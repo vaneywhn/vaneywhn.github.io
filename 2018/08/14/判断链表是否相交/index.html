@@ -112,16 +112,19 @@
 
 
 
-  <meta name="keywords" content="JAVA 链表">
+  <meta name="description" content="1、如何判断两单链表（无环）是否相交？&amp;nbsp;有两种可取的办法： （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交 （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点">
+<meta name="keywords" content="JAVA 链表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="判断两链表是否相交">
 <meta property="og:url" content="https://vaneywhn.github.io/2018/08/14/判断链表是否相交/index.html">
 <meta property="og:site_name" content="W先生和L小姐">
+<meta property="og:description" content="1、如何判断两单链表（无环）是否相交？&amp;nbsp;有两种可取的办法： （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交 （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg">
-<meta property="og:updated_time" content="2018-09-04T06:28:55.042Z">
+<meta property="og:updated_time" content="2018-09-04T07:07:33.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断两链表是否相交">
+<meta name="twitter:description" content="1、如何判断两单链表（无环）是否相交？&amp;nbsp;有两种可取的办法： （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交 （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点">
 <meta name="twitter:image" content="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg">
 
 
@@ -390,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-04 14:28:55" itemprop="dateModified" datetime="2018-09-04T14:28:55+08:00">2018-09-04</time>
+                <time title="修改时间：2018-09-04 15:07:33" itemprop="dateModified" datetime="2018-09-04T15:07:33+08:00">2018-09-04</time>
               
             
           </span>
@@ -443,7 +446,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">817</span>
+                <span title="本文字数">816</span>
               
 
               
@@ -478,9 +481,8 @@
 
       
         <p><img src="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg" alt="图片描述"></p>
-<a id="more"></a>
 <hr>
-<h1 id="1、如何判断两单链表（无环）是否相交？"><a href="#1、如何判断两单链表（无环）是否相交？" class="headerlink" title="1、如何判断两单链表（无环）是否相交？"></a>1、如何判断两单链表（无环）是否相交？</h1><p>&nbsp;有两种可取的办法：<br> （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交<br> （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点<br> <br></p>
+<h1 id="1、如何判断两单链表（无环）是否相交？"><a href="#1、如何判断两单链表（无环）是否相交？" class="headerlink" title="1、如何判断两单链表（无环）是否相交？"></a>1、如何判断两单链表（无环）是否相交？</h1><p>&nbsp;有两种可取的办法：<br> （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交<br> （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点<br> <br><br><a id="more"></a></p>
 <h1 id="2、如何判断两单链表（不知是否有环）相交？"><a href="#2、如何判断两单链表（不知是否有环）相交？" class="headerlink" title="2、如何判断两单链表（不知是否有环）相交？"></a>2、如何判断两单链表（不知是否有环）相交？</h1><p>&nbsp;先判断是否有环，判断是否有环可以使用追逐办法，设置两个指针，一个走一步，一个走两步，如果能相遇则说明存在环<br> &nbsp;&nbsp;（1）两个都没环：回到问题1<br> &nbsp;&nbsp;（2）一个有环，一个没环：不用判断了，肯定两链表不相交<br> &nbsp;&nbsp;（3）两个都有环：判断链表A的碰撞点是否出现在链表B的环中，如果在，则相交。（相交时，环必定是两链表共有的）<br> <br></p>
 <h1 id="3、如何寻找两相交链表（不知是否有环）的第一个相交节点？"><a href="#3、如何寻找两相交链表（不知是否有环）的第一个相交节点？" class="headerlink" title="3、如何寻找两相交链表（不知是否有环）的第一个相交节点？"></a>3、如何寻找两相交链表（不知是否有环）的第一个相交节点？</h1><p>&nbsp;同样，使用追逐办法先判断是否存在环，分情况讨论<br>&nbsp;&nbsp;（1）无环：人为构环，将链表A的尾节点指向链表B，则构成一个带环的单链表。这个问题就转换成寻找带环单链表的环入口节点。<br>    解法参考：<a href="http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx" target="_blank" rel="noopener">http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx</a><br>&nbsp;&nbsp;（2）有环：计算出两链表的长度lA、lB，【环的长度和环到入口点长度之和就是链表长度】<br>    计算带环链表长度,解法参考：<a href="http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx" target="_blank" rel="noopener">http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx</a><br>&nbsp;&nbsp;&nbsp;如果lA&gt;lB，则链表A指针先走lA-lB，然后链表B指针开始走，两者相遇的点就是相交点<br>&nbsp;&nbsp;&nbsp;如果lB&gt;lA，则链表B指针先走lB-lA，然后链表A指针开始走，两者相遇的点就是相交点</p>
 
