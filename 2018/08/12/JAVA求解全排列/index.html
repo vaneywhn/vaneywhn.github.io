@@ -112,16 +112,16 @@
 
 
 
-  <meta name="keywords" content="JAVA 链表">
+  <meta name="keywords" content="JAVA 全排列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="判断两链表是否相交">
-<meta property="og:url" content="https://vaneywhn.github.io/2018/08/14/判断链表是否相交/index.html">
+<meta property="og:title" content="JAVA全排列问题">
+<meta property="og:url" content="https://vaneywhn.github.io/2018/08/12/JAVA求解全排列/index.html">
 <meta property="og:site_name" content="W先生和L小姐">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg">
-<meta property="og:updated_time" content="2018-09-04T06:28:55.042Z">
+<meta property="og:updated_time" content="2018-09-04T06:47:41.475Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="判断两链表是否相交">
+<meta name="twitter:title" content="JAVA全排列问题">
 <meta name="twitter:image" content="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg">
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://vaneywhn.github.io/2018/08/14/判断链表是否相交/"/>
+  <link rel="canonical" href="https://vaneywhn.github.io/2018/08/12/JAVA求解全排列/"/>
 
 
 
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>判断两链表是否相交 | W先生和L小姐</title>
+  <title>JAVA全排列问题 | W先生和L小姐</title>
   
 
 
@@ -331,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/14/判断链表是否相交/">
+    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/JAVA求解全排列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王浩南">
@@ -348,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">判断两链表是否相交
+          <h1 class="post-title" itemprop="name headline">JAVA全排列问题
               
             
           </h1>
@@ -373,7 +373,7 @@
                 
               
 
-              <time title="创建时间：2018-08-14 09:30:47" itemprop="dateCreated datePublished" datetime="2018-08-14T09:30:47+08:00">2018-08-14</time>
+              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
             
 
             
@@ -390,7 +390,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-04 14:28:55" itemprop="dateModified" datetime="2018-09-04T14:28:55+08:00">2018-09-04</time>
+                <time title="修改时间：2018-09-04 14:47:41" itemprop="dateModified" datetime="2018-09-04T14:47:41+08:00">2018-09-04</time>
               
             
           </span>
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">817</span>
+                <span title="本文字数">4.7k</span>
               
 
               
@@ -457,7 +457,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -480,10 +480,19 @@
         <p><img src="https://gratisography.com/thumbnails/gratisography-282-thumbnail.jpg" alt="图片描述"></p>
 <a id="more"></a>
 <hr>
-<h1 id="1、如何判断两单链表（无环）是否相交？"><a href="#1、如何判断两单链表（无环）是否相交？" class="headerlink" title="1、如何判断两单链表（无环）是否相交？"></a>1、如何判断两单链表（无环）是否相交？</h1><p>&nbsp;有两种可取的办法：<br> （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交<br> （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点<br> <br></p>
-<h1 id="2、如何判断两单链表（不知是否有环）相交？"><a href="#2、如何判断两单链表（不知是否有环）相交？" class="headerlink" title="2、如何判断两单链表（不知是否有环）相交？"></a>2、如何判断两单链表（不知是否有环）相交？</h1><p>&nbsp;先判断是否有环，判断是否有环可以使用追逐办法，设置两个指针，一个走一步，一个走两步，如果能相遇则说明存在环<br> &nbsp;&nbsp;（1）两个都没环：回到问题1<br> &nbsp;&nbsp;（2）一个有环，一个没环：不用判断了，肯定两链表不相交<br> &nbsp;&nbsp;（3）两个都有环：判断链表A的碰撞点是否出现在链表B的环中，如果在，则相交。（相交时，环必定是两链表共有的）<br> <br></p>
-<h1 id="3、如何寻找两相交链表（不知是否有环）的第一个相交节点？"><a href="#3、如何寻找两相交链表（不知是否有环）的第一个相交节点？" class="headerlink" title="3、如何寻找两相交链表（不知是否有环）的第一个相交节点？"></a>3、如何寻找两相交链表（不知是否有环）的第一个相交节点？</h1><p>&nbsp;同样，使用追逐办法先判断是否存在环，分情况讨论<br>&nbsp;&nbsp;（1）无环：人为构环，将链表A的尾节点指向链表B，则构成一个带环的单链表。这个问题就转换成寻找带环单链表的环入口节点。<br>    解法参考：<a href="http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx" target="_blank" rel="noopener">http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx</a><br>&nbsp;&nbsp;（2）有环：计算出两链表的长度lA、lB，【环的长度和环到入口点长度之和就是链表长度】<br>    计算带环链表长度,解法参考：<a href="http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx" target="_blank" rel="noopener">http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx</a><br>&nbsp;&nbsp;&nbsp;如果lA&gt;lB，则链表A指针先走lA-lB，然后链表B指针开始走，两者相遇的点就是相交点<br>&nbsp;&nbsp;&nbsp;如果lB&gt;lA，则链表B指针先走lB-lA，然后链表A指针开始走，两者相遇的点就是相交点</p>
-
+<h1 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h1><p>给定一个字符串，求出该字符串的全排列。<br>比如：”abc”的全排列是：abc、acb、bac、bca、cab、cba</p>
+<h1 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h1><p>采用递归的方式求解。每次先选定一个字符，然后进行“若干次”交换，求出在选定这个字符的条件下，所有的全排列，并把字符“复位”再交换回来。至此，一趟全排列完成。第二趟，选定下一个字符，然后进行“若干次”交换，求出在选定这个字符的条件下，所有的全排列，并把字符“复位”再交换回来。<br><br>就类似于：(参考网上的解释如下：)<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">设R=&#123;r1,r2,...rn&#125;是要进行排列的n个元素.Ri=R-&#123;ri&#125;.集合X中元素的全排列记为Perm(X).(ri)Perm(X)表示</span><br><span class="line">在全排列Perm(X)的每一个排列前加上前缀ri得到的排列R的全排列可归纳定义如下:</span><br><span class="line">		当n=1时,Perm(R)=(r),其中r是集合R中唯一的元素;</span><br><span class="line">		当r&gt;1时,Perm(R)由(r1)Perm(r1),(r2)Perm(r2).....(rn)Perm(rn)构成.</span><br><span class="line"></span><br><span class="line">全排列就是从第一个数字起每个数分别与它后面的数字交换</span><br><span class="line">去重的全排列就是从第一个数字起每个数分别与它后面非重复出现的数字交换，</span><br><span class="line">用编程的话描述就是第i个数与第j个数交换时，要求[i,j)中没有与第j个数相等的数。</span><br></pre></td></tr></table></figure>
+<p>代码实现如下：使用一个LinkedList<string>保存每一种排列，如果字符串中出现有重复的字符，则此方法会求出 重复的排列数，因而LinkedList<string>会保存重复的排列。</string></string></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Collections;</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line"></span><br><span class="line">public class Permutation &#123;</span><br><span class="line">    </span><br><span class="line">    public static void allPermutation(String str)&#123;</span><br><span class="line">        if(str == null || str.length() == 0)</span><br><span class="line">            return;</span><br><span class="line">        //保存所有的全排列</span><br><span class="line">        LinkedList&lt;String&gt; listStr = new LinkedList&lt;String&gt;();</span><br><span class="line">        </span><br><span class="line">        allPermutation(str.toCharArray(), listStr, 0);</span><br><span class="line">        </span><br><span class="line">        print(listStr);//打印全排列</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    private static void allPermutation(char[] c, LinkedList&lt;String&gt; listStr, int start)&#123;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        if(start == c.length-1)</span><br><span class="line">            listStr.add(String.valueOf(c));</span><br><span class="line">        else&#123;</span><br><span class="line">            for(int i = start; i &lt;= c.length-1; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(c, i, start);//相当于: 固定第 i 个字符</span><br><span class="line">                allPermutation(c, listStr, start+1);//求出这种情形下的所有排列</span><br><span class="line">                swap(c, start, i);//复位</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private static void swap(char[] c, int i, int j)&#123;</span><br><span class="line">        char tmp;</span><br><span class="line">        tmp = c[i];</span><br><span class="line">        c[i] = c[j];</span><br><span class="line">        c[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private static void print(LinkedList&lt;String&gt; listStr)</span><br><span class="line">    &#123;</span><br><span class="line">        Collections.sort(listStr);//使字符串按照&apos;字典顺序&apos;输出</span><br><span class="line">        for (String str : listStr) &#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;size:&quot; + listStr.size());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //hapjin test</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">//        allPermutation(&quot;hapjin&quot;);</span><br><span class="line">        allPermutation(&quot;abc&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要想让重复的排列只保存一次，有两种方式：①改进算法，不生成重复的排列  ②用HashSet来保存排列</p>
+<p>当字符串中出现重复的字符时，如何生成不重复的排列？—去重的全排列就是从第一个数字起每个数分别与它后面非重复出现的数字交换</p>
+<p>代码实现如下：(当有重复字符时，也可生成所有正确的排列(排列不会重复))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">public class Permutation &#123;</span><br><span class="line">    </span><br><span class="line">    public static void allPermutation(String str)&#123;</span><br><span class="line">        if(str == null || str.length() == 0)</span><br><span class="line">            return;</span><br><span class="line">        //保存所有的全排列</span><br><span class="line">        LinkedList&lt;String&gt; listStr = new LinkedList&lt;String&gt;();</span><br><span class="line">        </span><br><span class="line">        allPermutation(str.toCharArray(), listStr, 0);</span><br><span class="line">        </span><br><span class="line">        print(listStr);//打印全排列</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    private static void allPermutation(char[] c, LinkedList&lt;String&gt; listStr, int start)&#123;</span><br><span class="line"></span><br><span class="line">        if(start == c.length-1)</span><br><span class="line">            listStr.add(String.valueOf(c));//System.out.println(String.valueOf(c));</span><br><span class="line">        else&#123;</span><br><span class="line">            for(int i = start; i &lt;= c.length-1; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                //只有当没有重叠的字符 才交换</span><br><span class="line">                if(!isSwap(c, start, i))</span><br><span class="line">                &#123;</span><br><span class="line">                    swap(c, i, start);//相当于: 固定第 i 个字符</span><br><span class="line">                    allPermutation(c, listStr, start+1);//求出这种情形下的所有排列</span><br><span class="line">                    swap(c, start, i);//复位</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private static void swap(char[] c, int i, int j)&#123;</span><br><span class="line">        char tmp;</span><br><span class="line">        tmp = c[i];</span><br><span class="line">        c[i] = c[j];</span><br><span class="line">        c[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private static void print(LinkedList&lt;String&gt; listStr)</span><br><span class="line">    &#123;</span><br><span class="line">        Collections.sort(listStr);//使字符串按照&apos;字典顺序&apos;输出</span><br><span class="line">        for (String str : listStr) &#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;size:&quot; + listStr.size());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //[start,end) 中是否有与 c[end] 相同的字符</span><br><span class="line">    private static boolean isSwap(char[] c, int start, int end)</span><br><span class="line">    &#123;</span><br><span class="line">        for(int i = start; i &lt; end; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(c[i] == c[end])</span><br><span class="line">                return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //hapjin test</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">//        allPermutation(&quot;hapjin&quot;);</span><br><span class="line">        allPermutation(&quot;aba&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的实现将所有的排列顺序都保存到LinkedList<string>了，这是要注意的。当然也可以不保存排列的顺序，直接输出（allPermutation方法）。</string></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(start == c.length-1)</span><br><span class="line">    listStr.add(String.valueOf(c));//保存排列</span><br><span class="line">    //System.out.println(String.valueOf(c));//不保存排列,直接输出</span><br></pre></td></tr></table></figure>
+<pre><code>原文：http://www.cnblogs.com/hapjin/p/5757810.html
+</code></pre>
       
     </div>
 
@@ -503,7 +512,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JAVA-链表/" rel="tag"># JAVA 链表</a>
+            <a href="/tags/JAVA-全排列/" rel="tag"># JAVA 全排列</a>
           
         </div>
       
@@ -536,15 +545,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/JAVA求解全排列/" rel="next" title="JAVA全排列问题">
-                <i class="fa fa-chevron-left"></i> JAVA全排列问题
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/14/判断链表是否相交/" rel="prev" title="判断两链表是否相交">
+                判断两链表是否相交 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -723,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、如何判断两单链表（无环）是否相交？"><span class="nav-number">1.</span> <span class="nav-text">1、如何判断两单链表（无环）是否相交？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、如何判断两单链表（不知是否有环）相交？"><span class="nav-number">2.</span> <span class="nav-text">2、如何判断两单链表（不知是否有环）相交？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、如何寻找两相交链表（不知是否有环）的第一个相交节点？"><span class="nav-number">3.</span> <span class="nav-text">3、如何寻找两相交链表（不知是否有环）的第一个相交节点？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、问题描述"><span class="nav-number">1.</span> <span class="nav-text">一、问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、实现思路"><span class="nav-number">2.</span> <span class="nav-text">二、实现思路</span></a></li></ol></div>
             
 
           </div>
