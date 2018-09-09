@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[字符全排列]]></title>
+    <url>%2F2018%2F08%2F30%2F%E5%AD%97%E7%AC%A6%E5%85%A8%E6%8E%92%E5%88%97%2F</url>
+    <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536373839import java.util.List;import java.util.Collections;import java.util.ArrayList; public class Solution &#123; public ArrayList&lt;String&gt; Permutation(String str) &#123; List&lt;String&gt; res = new ArrayList&lt;&gt;(); if (str != null &amp;&amp; str.length() &gt; 0) &#123; PermutationHelper(str.toCharArray(), 0, res); Collections.sort(res); &#125; return (ArrayList)res; &#125; public void PermutationHelper(char[] cs, int start, List&lt;String&gt; list) &#123; if (start == cs.length - 1) &#123; //当交换发生在最后一个，也是单个字符的特例 String val = String.valueOf(cs); if (!list.contains(val)) //重复字符串的判定（当字符串中存在重复字符时） list.add(val); &#125; else &#123; for (int j = start; j &lt; cs.length; j++) &#123; swap(cs, start, j); //在剩余的字符数组中选择一个字符作为头，剩下的字符递归调用 PermutationHelper(cs, start+1, list); //剩余的字符的全排列 swap(cs, start, j); &#125; &#125; &#125; public void swap(char[] cs, int i, int j) &#123; char temp = cs[i]; cs[i] = cs[j]; cs[j] = temp; &#125; public static void main(String[] args) &#123; Solution p = new Solution(); System.out.println(p.Permutation("abc").toString()); &#125;&#125;]]></content>
+      <categories>
+        <category>JAVA算法</category>
+      </categories>
+      <tags>
+        <tag>JAVA 算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[二叉树遍历递归与非递归java实现]]></title>
+    <url>%2F2018%2F08%2F30%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92java%E5%AE%9E%E7%8E%B0%2F</url>
+    <content type="text"><![CDATA[二叉树结点结构123456789101112public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x)&#123; val=x; &#125; @Override public String toString()&#123; return "val: "+val; &#125;&#125; 前序遍历递归12345678910/** * 递归先序遍历 **/ public void preOrderRecursion(TreeNode node)&#123; if(node==null) //如果结点为空则返回 return; visit(node);//访问根节点 preOrderRecursion(node.left);//访问左孩子 preOrderRecursion(node.right);//访问右孩子 &#125; 非递归1、首先申请一个新的栈，记为stack。2、将头结点head压入stack中。3、每次从stack中弹出栈顶节点，记为cur，然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。4.不断重复步骤3，直到stack为空，全部过程结束。 12345678910111213141516171819/** * 非递归先序遍历二叉树 **/ public List&lt;Integer&gt; preorderTraversal(TreeNode root) &#123; List&lt;Integer&gt; resultList=new ArrayList&lt;&gt;(); Stack&lt;TreeNode&gt; treeStack=new Stack&lt;&gt;(); if(root==null) //如果为空树则返回 return resultList; treeStack.push(root); while(!treeStack.isEmpty())&#123; TreeNode tempNode=treeStack.pop(); if(tempNode!=null)&#123; resultList.add(tempNode.val);//访问根节点 treeStack.push(tempNode.right); //入栈右孩子 treeStack.push(tempNode.left);//入栈左孩子 &#125; &#125; return resultList; &#125; 中序遍历递归12345678910/** * 递归中序遍历 **/ public void preOrderRecursion(TreeNode node)&#123; if(node==null) //如果结点为空则返回 return; preOrderRecursion(node.left);//访问左孩子 visit(node);//访问根节点 preOrderRecursion(node.right);//访问右孩子 &#125; 非递归1、申请一个新的栈，记为stack，申请一个变量cur，初试时令cur等于头节点。2、先把cur节点压入stack中，对以cur节点为头的整颗子树来说，依次吧整颗书的左边界压入栈中，即不断令cur=cur.left，然后重复步骤2。3、不断重复步骤2，直到发现cur为空，此时从stack中弹出一个节点，记为node。打印node的值，并让cur=node.right，然后继续重复步骤2。4.当stack为空并且cur为空时，整个过程结束。 123456789101112131415161718public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123; List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;(); Stack&lt;TreeNode&gt; stack = new Stack&lt;TreeNode&gt;(); TreeNode cur = root; while(cur!=null || !stack.empty())&#123; while(cur!=null)&#123; stack.add(cur); cur = cur.left; &#125; cur = stack.pop(); list.add(cur.val); cur = cur.right; &#125; return list;&#125; 后序遍历非递归先采用类似先序遍历，先遍历根结点再右孩子最后左孩子（先序是先根结点再左孩子最后右孩子），最后把遍历的序列逆转即得到了后序遍历 123456789101112131415public List&lt;Integer&gt; postorderTraversal(TreeNode root) &#123; Deque&lt;TreeNode&gt; stack = new LinkedList&lt;&gt;(); stack.push(root); List&lt;Integer&gt; ret = new ArrayList&lt;&gt;(); while (!stack.isEmpty()) &#123; TreeNode node = stack.pop(); if (node != null) &#123; ret.add(node.val); stack.push(node.left); stack.push(node.right); &#125; &#125; Collections.reverse(ret); return ret;&#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA 二叉树遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[判断两链表是否相交]]></title>
+    <url>%2F2018%2F08%2F14%2F%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E7%9B%B8%E4%BA%A4%2F</url>
+    <content type="text"><![CDATA[1、如何判断两单链表（无环）是否相交？&nbsp;有两种可取的办法： （1）人为构环，将链表A的尾节点指向链表B，再判断是否构环成功？从链表B的头指针往下遍历，如果能够回到B，则说明相交 （2）判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点 2、如何判断两单链表（不知是否有环）相交？&nbsp;先判断是否有环，判断是否有环可以使用追逐办法，设置两个指针，一个走一步，一个走两步，如果能相遇则说明存在环 &nbsp;&nbsp;（1）两个都没环：回到问题1 &nbsp;&nbsp;（2）一个有环，一个没环：不用判断了，肯定两链表不相交 &nbsp;&nbsp;（3）两个都有环：判断链表A的碰撞点是否出现在链表B的环中，如果在，则相交。（相交时，环必定是两链表共有的） 3、如何寻找两相交链表（不知是否有环）的第一个相交节点？&nbsp;同样，使用追逐办法先判断是否存在环，分情况讨论&nbsp;&nbsp;（1）无环：人为构环，将链表A的尾节点指向链表B，则构成一个带环的单链表。这个问题就转换成寻找带环单链表的环入口节点。 解法参考：http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx&nbsp;&nbsp;（2）有环：计算出两链表的长度lA、lB，【环的长度和环到入口点长度之和就是链表长度】 计算带环链表长度,解法参考：http://blog.csdn.net/liuxialong/archive/2011/06/20/6555850.aspx&nbsp;&nbsp;&nbsp;如果lA&gt;lB，则链表A指针先走lA-lB，然后链表B指针开始走，两者相遇的点就是相交点&nbsp;&nbsp;&nbsp;如果lB&gt;lA，则链表B指针先走lB-lA，然后链表A指针开始走，两者相遇的点就是相交点]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA 链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVA全排列问题]]></title>
+    <url>%2F2018%2F08%2F12%2FJAVA%E6%B1%82%E8%A7%A3%E5%85%A8%E6%8E%92%E5%88%97%2F</url>
+    <content type="text"><![CDATA[一、问题描述给定一个字符串，求出该字符串的全排列。比如：”abc”的全排列是：abc、acb、bac、bca、cab、cba 二、实现思路采用递归的方式求解。每次先选定一个字符，然后进行“若干次”交换，求出在选定这个字符的条件下，所有的全排列，并把字符“复位”再交换回来。至此，一趟全排列完成。第二趟，选定下一个字符，然后进行“若干次”交换，求出在选定这个字符的条件下，所有的全排列，并把字符“复位”再交换回来。 就类似于：(参考网上的解释如下：) 12345678设R=&#123;r1,r2,...rn&#125;是要进行排列的n个元素.Ri=R-&#123;ri&#125;.集合X中元素的全排列记为Perm(X).(ri)Perm(X)表示在全排列Perm(X)的每一个排列前加上前缀ri得到的排列R的全排列可归纳定义如下: 当n=1时,Perm(R)=(r),其中r是集合R中唯一的元素; 当r&gt;1时,Perm(R)由(r1)Perm(r1),(r2)Perm(r2).....(rn)Perm(rn)构成.全排列就是从第一个数字起每个数分别与它后面的数字交换去重的全排列就是从第一个数字起每个数分别与它后面非重复出现的数字交换，用编程的话描述就是第i个数与第j个数交换时，要求[i,j)中没有与第j个数相等的数。 代码实现如下：使用一个LinkedList保存每一种排列，如果字符串中出现有重复的字符，则此方法会求出 重复的排列数，因而LinkedList会保存重复的排列。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354import java.util.Collections;import java.util.LinkedList;public class Permutation &#123; public static void allPermutation(String str)&#123; if(str == null || str.length() == 0) return; //保存所有的全排列 LinkedList&lt;String&gt; listStr = new LinkedList&lt;String&gt;(); allPermutation(str.toCharArray(), listStr, 0); print(listStr);//打印全排列 &#125; private static void allPermutation(char[] c, LinkedList&lt;String&gt; listStr, int start)&#123; if(start == c.length-1) listStr.add(String.valueOf(c)); else&#123; for(int i = start; i &lt;= c.length-1; i++) &#123; swap(c, i, start);//相当于: 固定第 i 个字符 allPermutation(c, listStr, start+1);//求出这种情形下的所有排列 swap(c, start, i);//复位 &#125; &#125; &#125; private static void swap(char[] c, int i, int j)&#123; char tmp; tmp = c[i]; c[i] = c[j]; c[j] = tmp; &#125; private static void print(LinkedList&lt;String&gt; listStr) &#123; Collections.sort(listStr);//使字符串按照'字典顺序'输出 for (String str : listStr) &#123; System.out.println(str); &#125; System.out.println("size:" + listStr.size()); &#125; //hapjin test public static void main(String[] args) &#123;// allPermutation("hapjin"); allPermutation("abc"); &#125;&#125; 如果要想让重复的排列只保存一次，有两种方式：①改进算法，不生成重复的排列 ②用HashSet来保存排列 当字符串中出现重复的字符时，如何生成不重复的排列？—去重的全排列就是从第一个数字起每个数分别与它后面非重复出现的数字交换 代码实现如下：(当有重复字符时，也可生成所有正确的排列(排列不会重复)) 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465public class Permutation &#123; public static void allPermutation(String str)&#123; if(str == null || str.length() == 0) return; //保存所有的全排列 LinkedList&lt;String&gt; listStr = new LinkedList&lt;String&gt;(); allPermutation(str.toCharArray(), listStr, 0); print(listStr);//打印全排列 &#125; private static void allPermutation(char[] c, LinkedList&lt;String&gt; listStr, int start)&#123; if(start == c.length-1) listStr.add(String.valueOf(c));//System.out.println(String.valueOf(c)); else&#123; for(int i = start; i &lt;= c.length-1; i++) &#123; //只有当没有重叠的字符 才交换 if(!isSwap(c, start, i)) &#123; swap(c, i, start);//相当于: 固定第 i 个字符 allPermutation(c, listStr, start+1);//求出这种情形下的所有排列 swap(c, start, i);//复位 &#125; &#125; &#125; &#125; private static void swap(char[] c, int i, int j)&#123; char tmp; tmp = c[i]; c[i] = c[j]; c[j] = tmp; &#125; private static void print(LinkedList&lt;String&gt; listStr) &#123; Collections.sort(listStr);//使字符串按照'字典顺序'输出 for (String str : listStr) &#123; System.out.println(str); &#125; System.out.println("size:" + listStr.size()); &#125; //[start,end) 中是否有与 c[end] 相同的字符 private static boolean isSwap(char[] c, int start, int end) &#123; for(int i = start; i &lt; end; i++) &#123; if(c[i] == c[end]) return true; &#125; return false; &#125; //hapjin test public static void main(String[] args) &#123;// allPermutation("hapjin"); allPermutation("aba"); &#125;&#125; 上面的实现将所有的排列顺序都保存到LinkedList了，这是要注意的。当然也可以不保存排列的顺序，直接输出（allPermutation方法）。 123if(start == c.length-1) listStr.add(String.valueOf(c));//保存排列 //System.out.println(String.valueOf(c));//不保存排列,直接输出 原文：http://www.cnblogs.com/hapjin/p/5757810.html]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA 全排列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[八大排序算法总结&时间复杂度&稳定性]]></title>
+    <url>%2F2018%2F07%2F15%2F%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%26%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%26%E7%A8%B3%E5%AE%9A%E6%80%A7%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA 简单排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各种数据结构中操作的平均时间复杂度]]></title>
+    <url>%2F2018%2F07%2F15%2F%E5%90%84%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E6%93%8D%E4%BD%9C%E7%9A%84%E5%B9%B3%E5%9D%87%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA 时间复杂度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常用数据类型之间的转换]]></title>
+    <url>%2F2018%2F07%2F10%2F%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[List转换为Array123ArrayList&lt;String&gt; list=new ArrayList&lt;String&gt;();String[] strarr = new String[list.size()];list.toArray(strarr); ##Array转换为List 123String[] s = &#123;"a","b","c"&#125;;List list = java.util.Arrays.asList(s);ArrayList newList = new ArrayList&lt;&gt;(list) ##String转换为字符串数组 12String str = "This is a String."; // Convert the above string to a char array.char[] arr = str.toCharArray(); // Display the contents of the char array. ##字符串数组转换为String ###如果是 “字符串数组” 转 “字符串”，只能通过循环，没有其它方法123456String[] str = &#123;"abc", "bcd", "def"&#125;; //StringBuffer sb = new StringBuffer();for(int i = 0; i &lt; str.length; i++)&#123;sb. append(str[i]);&#125;String s = sb.toString(); ###如果是 “字符数组” 转 “字符串” 可以通过下边的方法12char[] data=&#123;'a','b','c'&#125;; //String s=new String(data); ##数组之间的复制System提供了一个静态方法arraycopy(),我们可以使用它来实现数组之间的复制。其函数原型是：12345678public static void (Object src, int srcPos, Object dest, int destPos, int length)src:源数组； srcPos:源数组要复制的起始位置；dest:目的数组； destPos:目的数组放置的起始位置； length:复制的长度。注意：src and dest都必须是同类型或者可以进行转换类型的数组．]]></content>
+      <categories>
+        <category>JAVA数据类型</category>
+      </categories>
+      <tags>
+        <tag>JAVA 数据类型</tag>
+      </tags>
+  </entry>
+</search>
