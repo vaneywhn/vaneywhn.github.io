@@ -963,241 +963,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/Java中的集合类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王浩南">
-      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="W先生和L小姐">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/Java中的集合类/" itemprop="url">
-                  Java中的集合类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-27 22:47:26" itemprop="dateModified" datetime="2018-09-27T22:47:26+08:00">2018-09-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/12/Java中的集合类/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/12/Java中的集合类/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">4.2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">4 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p><img src="http://wiki.jikexueyuan.com/project/java-interview-bible/images/collection.jpg" alt="集合框架图"></p>
-<h1 id="ArrayList、LinkedList、Vector的区别和实现原理。"><a href="#ArrayList、LinkedList、Vector的区别和实现原理。" class="headerlink" title="ArrayList、LinkedList、Vector的区别和实现原理。"></a>ArrayList、LinkedList、Vector的区别和实现原理。</h1><p>&emsp;&emsp;ArrayList和Vector只能按顺序存储元素（从下标为0的位置开始），删除元素的时候，需要移位并置空，默认初始容量都是10。<br>ArrayList和Vector基于数组实现的，LinkedList基于双向循环链表实现的（含有头结点）。</p>
-<h2 id="一、线程安全性"><a href="#一、线程安全性" class="headerlink" title="一、线程安全性"></a>一、线程安全性</h2><p>&emsp;&emsp; <strong>ArrayList和LinkedList<font color="red">不具有线程安全性</font></strong>，用在单线程环境中。如果在并发环境下使用它们，可以用Colletions类中的静态方法synchronizedList()对ArrayList和LinkedList进行调用即可。<br><br><strong>Vector是<font color="red">线程安全</font>的</strong>，即它的大部分方法都包含有关键字synchronized。Vector的效率没有ArrayList和LinkedList高。</p>
-<h2 id="二、扩容机制"><a href="#二、扩容机制" class="headerlink" title="二、扩容机制"></a>二、扩容机制</h2><p>从内部实现机制来讲，ArrayList和Vector都是使用Objec的数组形式来存储的。 <strong>ArrayList扩容后的容量是之前的1.5倍</strong>，然后，把之前的数据拷贝到新建的数组。 <strong>Vector默认情况下扩容后的容量是之前的2倍</strong>。<br>Vector可以设置容量增量，而ArrayList不可以。在Vector中有capacityIncrement：向量的大小大于其容量时，容量自动增加的量。如果在创建Vector时，指定了capacityIncrement的大小；则每次当Vector中动态数组容量需要增加时，如果容量的增量大于零，增加的大小都是capacityIncrement。如果容量的增量小于等于零，则每次需要增大容量时，向量的容量将增大为之前的2倍。</p>
-<h2 id="三、增删改查的效率"><a href="#三、增删改查的效率" class="headerlink" title="三、增删改查的效率"></a>三、增删改查的效率</h2><p>ArrayList和Vector中，从指定的位置（用index）检索一个对象，或在集合的末尾插入、删除一个对象的时间是一样的，可表示为O(1)。但是，如果在集合的其他位置增加或移除元素那么花费的时间是O(n)。LinkedList中，在插入、删除集合中任何位置的元素所花费的时间都是一样的—O(1)，但它在索引一个元素的时候比较慢O(n)。</p>
-<h1 id="HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"><a href="#HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理" class="headerlink" title="HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"></a>HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理</h1><h2 id="HashMap和HashTable原理"><a href="#HashMap和HashTable原理" class="headerlink" title="HashMap和HashTable原理"></a>HashMap和HashTable原理</h2><p>&emsp;&emsp;当程序试图将一个key-value对放入HashMap中时，程序首先计算该key的hashCode()值，然后对该哈希码值进行再哈希，然后把哈希值和（数组长度-1）进行按位与操作，得到存储的数组下标，如果该位置处没有链表节点，那么就直接把包含&lt;key,value&gt;的节点放入该位置。如果该位置有结点，就对链表进行遍历，看是否有hash，key和要放入的节点相同的节点，如果有的话，就替换该节点的value值，如果没有相同的话，就创建节点放入值，并把该节点插入到链表表头(头插法)。</p>
-<h2 id="HashMap和HashTable的区别"><a href="#HashMap和HashTable的区别" class="headerlink" title="HashMap和HashTable的区别"></a>HashMap和HashTable的区别</h2><p>1、Hashtable是线程安全的，方法是Synchronized的，适合在多线程环境中使用，效率稍低；HashMap不是线程安全的，效率稍高，适合在单线程环境下使用，在多线程场合下使用，需要手动同步HashMap，Collections.synchronizedMap()。</p>
-<p>2、 <strong>HashMap的key和value都可以为null值，HashTable的key和value都不允许有Null值</strong>。</p>
-<p>3、HashMap中数组的默认大小是16，而且一定是2的倍数，扩容后的数组长度是之前数组长度的2倍。HashTable中数组默认大小是11，扩容后的数组长度是之前数组长度的2倍+1。</p>
-<p>4、哈希值的使用不同。</p>
-<p>5、判断是否含有某个键。<br><br>&emsp;&emsp;在HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当get()方法返回null值时，既可以表示HashMap中没有该键，也可以表示该键所对应的值为null。因此，在HashMap中不能用get()方法来判断HashMap中是否存在某个键，而应该用containsKey()方法来判断。Hashtable的键值都不能为null，所以可以用get()方法来判断是否含有某个键</p>
-<h2 id="ConcurrentHashMap-的原理"><a href="#ConcurrentHashMap-的原理" class="headerlink" title="ConcurrentHashMap 的原理"></a>ConcurrentHashMap 的原理</h2><p>&emsp;&emsp;在 ConcurrentHashMap 中，不允许用null作为键和值。ConcurrentHashMap使用分段锁技术，将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问，能够实现真正的并发访问。读操作大部分时候都不需要用到锁。只有在size等操作时才需要锁住整个hash 表。它把区间按照并发级别(concurrentLevel)，分成了若干个 segment。ConcurrentHashMap使用segment来分段和管理锁，segment继承自 ReentrantLock，因 此 ConcurrentHashMap使用ReentrantLock来保证线程安全。</p>
-<h3 id="Get-Object-Key-的实现"><a href="#Get-Object-Key-的实现" class="headerlink" title="Get(Object Key)的实现"></a>Get(Object Key)的实现</h3><p>&emsp;&emsp;get 操作的高效之处在于整个 get 过程不需要加锁，除非读到的值是空的才会加锁重读。之所以不会读到过期的值，是<strong>根据 java 内存模型的 happen before 原则，对volatile 字段的写入操作先于读操作，即使两个线程同时修改和获取volatile变量，get 操作也能拿到最新的值，这是用volatile 替换锁的经典应用场景</strong>。</p>
-<h3 id="Put-K-Key-V-Value-的实现——用Lock加锁"><a href="#Put-K-Key-V-Value-的实现——用Lock加锁" class="headerlink" title="Put(K Key,V Value)的实现——用Lock加锁"></a>Put(K Key,V Value)的实现——用Lock加锁</h3><p>①根据 key 计算出对应的 hash 值；<br><br>②根据 hash 值找到对应的Segment 对象；<br><br>③在这个 Segment 中执行具体的 put 操作；<br><br>插入操作需要经历两个步骤：<br><br>&emsp;&emsp;第一步判断是否需要对Segment 里的HashEntry 数组进行扩容；<br><br>&emsp;&emsp;第二步定位添加元素的位置然后放在HashEntry 数组里。<br></p>
-<h4 id="是否需要扩容？"><a href="#是否需要扩容？" class="headerlink" title="是否需要扩容？"></a>是否需要扩容？</h4><p>&emsp;&emsp;在插入元素前会先判断Segment 里的HashEntry 数组是否超过容量（threshold），如果超过阀值，数组进行扩容。值得一提的是， <strong>Segment的扩容判断比HashMap 更恰当，因为HashMap 是在插入元素后判断元素是否已经到达容量</strong>的，如果到达了就进行扩容，但是很有可能扩容之后没有新元素插入，这时HashMap 就进行了一次无效的扩容。</p>
-<p>###Move(Object Key)的实现<br>暂无总结</p>
-<p><strong>ConcurrentHashMap 的高并发性主要来自于三个方面：<br><br>1、用分离锁实现多个线程间的更深层次的共享访问。<br><br>2、用 HashEntry 对象的不变性来降低执行读操作的线程在遍历链表期间对加锁的需求。<br><br>3、通过对同一个 Volatile 变量的写 / 读访问，协调不同线程间读 / 写操作的内存可见性。</strong></p>
-<p>##WeakHashMap和HashMap的区别<br><br>WeakHashMap中的key采用的是“弱引用”的方式，只要WeakHashMap中的key不再被外部引用，所对应的键值对就可以被垃圾回收器回收。<br><br>HashMap中的key采用的是“强引用”的方式，当key不再被外部引用时，只有当这个key从HashMap中删除后，才可以被垃圾回收器回收。<br></p>
-<h2 id="HashMap和TreeMap区别："><a href="#HashMap和TreeMap区别：" class="headerlink" title="HashMap和TreeMap区别："></a>HashMap和TreeMap区别：</h2><p>1.实现方式的区别：<br>HashMap：基于<strong>哈希表</strong>实现。TreeMap：基于<strong>红黑树</strong>实现。<br><br>2.TreeMap能够把它保存的记录根据键排序.<br></p>
-<ol start="3">
-<li><strong>HashMap</strong>：适用于在Map中插入、删除和查找元素。<br><br>&emsp; <strong>Treemap</strong>：适用于按自然顺序或自定义顺序遍历键(key)。<br><br>&emsp;&nbsp;HashMap通常比TreeMap快一点。</li>
-</ol>
-<h1 id="Hashset的实现原理"><a href="#Hashset的实现原理" class="headerlink" title="Hashset的实现原理"></a>Hashset的实现原理</h1><p>对于HashSet而言，它是基于HashMap实现的，HashSet底层使用HashMap来保存所有元素。HashSet中的元素都存放在HashMap的key上面，而value中的值都是统一的一个 <strong>privatestaticfinalObjectPRESENT=newObject()</strong>;<br></p>
-<h1 id="Collection和Collections的区别"><a href="#Collection和Collections的区别" class="headerlink" title="Collection和Collections的区别"></a>Collection和Collections的区别</h1><p>Collection是<font color="red">集合类的上级接口</font>，子接口主要有Set和List。<br></p>
-<p>Collections是针对集合类的<font color="red">一个帮助类，提供了操作集合的工具方法</font>：一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。</p>
-<h1 id="happen-before原则"><a href="#happen-before原则" class="headerlink" title="happen-before原则"></a>happen-before原则</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、程序次序规则：在一个单独的线程中，按照程序代码的执行流顺序，（时间上）先执行的操作happen—before（时间上）后执行的操作。</span><br><span class="line">2、管理锁定规则：一个unlock操作happen—before后面（时间上的先后顺序，下同）对同一个锁的lock操作。</span><br><span class="line">3、volatile变量规则：对一个volatile变量的写操作happen—before后面对该变量的读操作。</span><br><span class="line">4、线程启动规则：Thread对象的start（）方法happen—before此线程的每一个动作。</span><br><span class="line">5、线程终止规则：线程的所有操作都happen—before对此线程的终止检测，可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。</span><br><span class="line">6、线程中断规则：对线程interrupt（）方法的调用happen—before发生于被中断线程的代码检测到中断时事件的发生。</span><br><span class="line">7、对象终结规则：一个对象的初始化完成（构造函数执行结束）happen—before它的finalize（）方法的开始。</span><br><span class="line">8、传递性：如果操作A happen—before操作B，操作B happen—before操作C，那么可以得出A?happen—before操作C。</span><br></pre></td></tr></table></figure>
-<p><font color="red"></font><br>&emsp;&emsp;</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/JAVA求解全排列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1360,6 +1125,454 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/设计模式总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王浩南">
+      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="W先生和L小姐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/12/设计模式总结/" itemprop="url">
+                  线程安全的单例模式编写
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-27 22:47:36" itemprop="dateModified" datetime="2018-09-27T22:47:36+08:00">2018-09-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/12/设计模式总结/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/12/设计模式总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1 id="利用静态内部类实现单例模式"><a href="#利用静态内部类实现单例模式" class="headerlink" title="利用静态内部类实现单例模式"></a>利用静态内部类实现单例模式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton t = <span class="keyword">new</span> Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> T.t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用双重校验锁DCL（double-checked-locking）"><a href="#使用双重校验锁DCL（double-checked-locking）" class="headerlink" title="使用双重校验锁DCL（double checked locking）"></a>使用双重校验锁DCL（double checked locking）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用synchronized关键字"><a href="#使用synchronized关键字" class="headerlink" title="使用synchronized关键字"></a>使用synchronized关键字</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		 <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">			s = <span class="keyword">new</span> Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a><font color="red">构造函数的特点</font></h1><p>1.<font color="red">构造函数必须和类名一样</font>（但和类名一样的不一定是构造方法，普通方法也可以和类名同名），并且 <strong><font color="red">不能有返回值，返回值也不能为void</font></strong>。</p>
+<p>2.构造函数总是伴随着new操作一起调用，并且不能由程序的编写者调用，只能由系统调用。</p>
+<p>3.构造函数不能被继承。</p>
+<p>4.子类可以通过super()来显示调用父类的构造函数。</p>
+<p><font color="red"></font><br>&emsp;&emsp;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/Java中的集合类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王浩南">
+      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="W先生和L小姐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/12/Java中的集合类/" itemprop="url">
+                  Java中的集合类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-29 16:32:28" itemprop="dateModified" datetime="2018-09-29T16:32:28+08:00">2018-09-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/12/Java中的集合类/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/12/Java中的集合类/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p><img src="http://wiki.jikexueyuan.com/project/java-interview-bible/images/collection.jpg" alt="集合框架图"></p>
+<h1 id="ArrayList、LinkedList、Vector的区别和实现原理。"><a href="#ArrayList、LinkedList、Vector的区别和实现原理。" class="headerlink" title="ArrayList、LinkedList、Vector的区别和实现原理。"></a>ArrayList、LinkedList、Vector的区别和实现原理。</h1><p>&emsp;&emsp;ArrayList和Vector只能按顺序存储元素（从下标为0的位置开始），删除元素的时候，需要移位并置空，默认初始容量都是10。<br>ArrayList和Vector基于数组实现的，LinkedList基于双向循环链表实现的（含有头结点）。</p>
+<h2 id="一、线程安全性"><a href="#一、线程安全性" class="headerlink" title="一、线程安全性"></a>一、线程安全性</h2><p>&emsp;&emsp; <strong>ArrayList和LinkedList<font color="red">不具有线程安全性</font></strong>，用在单线程环境中。如果在并发环境下使用它们，可以用Colletions类中的静态方法synchronizedList()对ArrayList和LinkedList进行调用即可。<br><br><strong>Vector是<font color="red">线程安全</font>的</strong>，即它的大部分方法都包含有关键字synchronized。Vector的效率没有ArrayList和LinkedList高。</p>
+<h2 id="二、扩容机制"><a href="#二、扩容机制" class="headerlink" title="二、扩容机制"></a>二、扩容机制</h2><p>从内部实现机制来讲，ArrayList和Vector都是使用Objec的数组形式来存储的。 <strong>ArrayList扩容后的容量是之前的1.5倍</strong>，然后，把之前的数据拷贝到新建的数组。 <strong>Vector默认情况下扩容后的容量是之前的2倍</strong>。<br>Vector可以设置容量增量，而ArrayList不可以。在Vector中有capacityIncrement：向量的大小大于其容量时，容量自动增加的量。如果在创建Vector时，指定了capacityIncrement的大小；则每次当Vector中动态数组容量需要增加时，如果容量的增量大于零，增加的大小都是capacityIncrement。如果容量的增量小于等于零，则每次需要增大容量时，向量的容量将增大为之前的2倍。</p>
+<h2 id="三、增删改查的效率"><a href="#三、增删改查的效率" class="headerlink" title="三、增删改查的效率"></a>三、增删改查的效率</h2><p>ArrayList和Vector中，从指定的位置（用index）检索一个对象，或在集合的末尾插入、删除一个对象的时间是一样的，可表示为O(1)。但是，如果在集合的其他位置增加或移除元素那么花费的时间是O(n)。LinkedList中，在插入、删除集合中任何位置的元素所花费的时间都是一样的—O(1)，但它在索引一个元素的时候比较慢O(n)。</p>
+<h1 id="HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"><a href="#HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理" class="headerlink" title="HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"></a>HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理</h1><h2 id="HashMap和HashTable原理"><a href="#HashMap和HashTable原理" class="headerlink" title="HashMap和HashTable原理"></a>HashMap和HashTable原理</h2><p>&emsp;&emsp;当程序试图将一个key-value对放入HashMap中时，程序首先计算该key的hashCode()值，然后对该哈希码值进行再哈希，然后把哈希值和（数组长度-1）进行按位与操作，得到存储的数组下标，如果该位置处没有链表节点，那么就直接把包含&lt;key,value&gt;的节点放入该位置。如果该位置有结点，就对链表进行遍历，看是否有hash，key和要放入的节点相同的节点，如果有的话，就替换该节点的value值，如果没有相同的话，就创建节点放入值，并把该节点插入到链表表头(头插法)。</p>
+<h2 id="HashMap和HashTable的区别"><a href="#HashMap和HashTable的区别" class="headerlink" title="HashMap和HashTable的区别"></a>HashMap和HashTable的区别</h2><p>1、Hashtable是线程安全的，方法是Synchronized的，适合在多线程环境中使用，效率稍低；HashMap不是线程安全的，效率稍高，适合在单线程环境下使用，在多线程场合下使用，需要手动同步HashMap，Collections.synchronizedMap()。</p>
+<p>2、 <strong>HashMap的key和value都可以为null值，HashTable的key和value都不允许有Null值</strong>。</p>
+<p>3、HashMap中数组的默认大小是16，而且一定是2的倍数，扩容后的数组长度是之前数组长度的2倍。HashTable中数组默认大小是11，扩容后的数组长度是之前数组长度的2倍+1。</p>
+<p>4、哈希值的使用不同。</p>
+<p>5、判断是否含有某个键。<br><br>&emsp;&emsp;在HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当get()方法返回null值时，既可以表示HashMap中没有该键，也可以表示该键所对应的值为null。因此，在HashMap中不能用get()方法来判断HashMap中是否存在某个键，而应该用containsKey()方法来判断。Hashtable的键值都不能为null，所以可以用get()方法来判断是否含有某个键</p>
+<h2 id="ConcurrentHashMap-的原理"><a href="#ConcurrentHashMap-的原理" class="headerlink" title="ConcurrentHashMap 的原理"></a>ConcurrentHashMap 的原理</h2><p>&emsp;&emsp;在 ConcurrentHashMap 中，不允许用null作为键和值。ConcurrentHashMap使用分段锁技术，将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问，能够实现真正的并发访问。读操作大部分时候都不需要用到锁。只有在size等操作时才需要锁住整个hash 表。它把区间按照并发级别(concurrentLevel)，分成了若干个 segment。ConcurrentHashMap使用segment来分段和管理锁，segment继承自 ReentrantLock，因 此 ConcurrentHashMap使用ReentrantLock来保证线程安全。</p>
+<h3 id="Get-Object-Key-的实现"><a href="#Get-Object-Key-的实现" class="headerlink" title="Get(Object Key)的实现"></a>Get(Object Key)的实现</h3><p>&emsp;&emsp;get 操作的高效之处在于整个 get 过程不需要加锁，除非读到的值是空的才会加锁重读。之所以不会读到过期的值，是<strong>根据 java 内存模型的 happen before 原则，对volatile 字段的写入操作先于读操作，即使两个线程同时修改和获取volatile变量，get 操作也能拿到最新的值，这是用volatile 替换锁的经典应用场景</strong>。</p>
+<h3 id="Put-K-Key-V-Value-的实现——用Lock加锁"><a href="#Put-K-Key-V-Value-的实现——用Lock加锁" class="headerlink" title="Put(K Key,V Value)的实现——用Lock加锁"></a>Put(K Key,V Value)的实现——用Lock加锁</h3><p>①根据 key 计算出对应的 hash 值；<br><br>②根据 hash 值找到对应的Segment 对象；<br><br>③在这个 Segment 中执行具体的 put 操作；<br><br>插入操作需要经历两个步骤：<br><br>&emsp;&emsp;第一步判断是否需要对Segment 里的HashEntry 数组进行扩容；<br><br>&emsp;&emsp;第二步定位添加元素的位置然后放在HashEntry 数组里。<br></p>
+<h4 id="是否需要扩容？"><a href="#是否需要扩容？" class="headerlink" title="是否需要扩容？"></a>是否需要扩容？</h4><p>&emsp;&emsp;在插入元素前会先判断Segment 里的HashEntry 数组是否超过容量（threshold），如果超过阀值，数组进行扩容。值得一提的是， <strong>Segment的扩容判断比HashMap 更恰当，因为HashMap 是在插入元素后判断元素是否已经到达容量</strong>的，如果到达了就进行扩容，但是很有可能扩容之后没有新元素插入，这时HashMap 就进行了一次无效的扩容。</p>
+<p>###Move(Object Key)的实现<br>暂无总结</p>
+<p><strong>ConcurrentHashMap 的高并发性主要来自于三个方面：<br><br>1、用分离锁实现多个线程间的更深层次的共享访问。<br><br>2、用 HashEntry 对象的不变性来降低执行读操作的线程在遍历链表期间对加锁的需求。<br><br>3、通过对同一个 Volatile 变量的写 / 读访问，协调不同线程间读 / 写操作的内存可见性。</strong></p>
+<p>##WeakHashMap和HashMap的区别<br><br>WeakHashMap中的key采用的是“弱引用”的方式，只要WeakHashMap中的key不再被外部引用，所对应的键值对就可以被垃圾回收器回收。<br><br>HashMap中的key采用的是“强引用”的方式，当key不再被外部引用时，只有当这个key从HashMap中删除后，才可以被垃圾回收器回收。<br></p>
+<h2 id="HashMap和TreeMap区别："><a href="#HashMap和TreeMap区别：" class="headerlink" title="HashMap和TreeMap区别："></a>HashMap和TreeMap区别：</h2><p>1.实现方式的区别：<br> &emsp;HashMap：基于<strong>哈希表</strong>实现。TreeMap：基于<strong>红黑树</strong>实现。<br>2.TreeMap能够把它保存的记录根据键排序.<br>3.<strong>HashMap</strong>：适用于在Map中插入、删除和查找元素。<br> &emsp;<strong>Treemap</strong>：适用于按自然顺序或自定义顺序遍历键(key)。<br></p>
+<h1 id="Hashset的实现原理"><a href="#Hashset的实现原理" class="headerlink" title="Hashset的实现原理"></a>Hashset的实现原理</h1><p>对于HashSet而言，它是基于HashMap实现的，HashSet底层使用HashMap来保存所有元素。HashSet中的元素都存放在HashMap的key上面，而value中的值都是统一的一个 <strong>privatestaticfinalObjectPRESENT=newObject()</strong>;<br></p>
+<h1 id="Collection和Collections的区别"><a href="#Collection和Collections的区别" class="headerlink" title="Collection和Collections的区别"></a>Collection和Collections的区别</h1><p>Collection是<font color="red">集合类的上级接口</font>，子接口主要有Set和List。<br></p>
+<p>Collections是针对集合类的<font color="red">一个帮助类，提供了操作集合的工具方法</font>：一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。</p>
+<h1 id="happen-before原则"><a href="#happen-before原则" class="headerlink" title="happen-before原则"></a>happen-before原则</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、程序次序规则：在一个单独的线程中，按照程序代码的执行流顺序，（时间上）先执行的操作happen—before（时间上）后执行的操作。</span><br><span class="line">2、管理锁定规则：一个unlock操作happen—before后面（时间上的先后顺序，下同）对同一个锁的lock操作。</span><br><span class="line">3、volatile变量规则：对一个volatile变量的写操作happen—before后面对该变量的读操作。</span><br><span class="line">4、线程启动规则：Thread对象的start（）方法happen—before此线程的每一个动作。</span><br><span class="line">5、线程终止规则：线程的所有操作都happen—before对此线程的终止检测，可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。</span><br><span class="line">6、线程中断规则：对线程interrupt（）方法的调用happen—before发生于被中断线程的代码检测到中断时事件的发生。</span><br><span class="line">7、对象终结规则：一个对象的初始化完成（构造函数执行结束）happen—before它的finalize（）方法的开始。</span><br><span class="line">8、传递性：如果操作A happen—before操作B，操作B happen—before操作C，那么可以得出A?happen—before操作C。</span><br></pre></td></tr></table></figure>
+<p><font color="red"></font><br>&emsp;&emsp;</p>
+
+          
         
       
     </div>
@@ -1650,6 +1863,229 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/各类数据结构遍历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王浩南">
+      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="W先生和L小姐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/12/各类数据结构遍历/" itemprop="url">
+                  各类数据结构遍历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-29 16:17:17" itemprop="dateModified" datetime="2018-09-29T16:17:17+08:00">2018-09-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/12/各类数据结构遍历/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/12/各类数据结构遍历/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1 id="HashMap的遍历方式"><a href="#HashMap的遍历方式" class="headerlink" title="HashMap的遍历方式"></a>HashMap的遍历方式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="comment">//方式一：</span></span><br><span class="line"><span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">	entry.getKey();</span><br><span class="line">	entry.getValue();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二：</span></span><br><span class="line"><span class="keyword">for</span>(Integer key : map.keySet())&#123;</span><br><span class="line">	System.out.println(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(Integer value : map.values())&#123;</span><br><span class="line">	System.out.println(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式三：</span></span><br><span class="line">Iterator&lt;Map.Entry&lt;Integer,Integer&gt;&gt; it = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">	it.next().getValue();</span><br><span class="line">	it.next().getKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Queue的遍历"><a href="#Queue的遍历" class="headerlink" title="Queue的遍历"></a>Queue的遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> a : q)&#123;</span><br><span class="line">	System.out.println(a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二</span></span><br><span class="line"><span class="keyword">while</span>(q.peek()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">	System.out.println(q.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Stack的遍历"><a href="#Stack的遍历" class="headerlink" title="Stack的遍历"></a>Stack的遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> b : s)&#123;</span><br><span class="line">	System.out.println(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二</span></span><br><span class="line"><span class="keyword">while</span>(s.isEmpty())&#123;</span><br><span class="line">	System.out.println(s.pop());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="LinkedList的遍历"><a href="#LinkedList的遍历" class="headerlink" title="LinkedList的遍历"></a>LinkedList的遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> c : list)&#123;</span><br><span class="line">	System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二</span></span><br><span class="line"><span class="keyword">for</span>(Iterator&lt;Integer&gt; it = list.iterator(); it.hasNext();)&#123;</span><br><span class="line">	System.out.println(it.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Arraylist的遍历"><a href="#Arraylist的遍历" class="headerlink" title="Arraylist的遍历"></a>Arraylist的遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; arrlist = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> d : arrlist)&#123;</span><br><span class="line">	System.out.println(d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二</span></span><br><span class="line"><span class="keyword">for</span>(Iterator&lt;Integer&gt; it = arrlist.iterator(); it.hasNext(); )&#123;</span><br><span class="line">	System.out.println(it.next());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式三</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arrlist.size();i++)&#123;</span><br><span class="line">	System.out.println(arrlist.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Hashset的遍历方式"><a href="#Hashset的遍历方式" class="headerlink" title="Hashset的遍历方式"></a>Hashset的遍历方式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(String str : set)&#123;</span><br><span class="line">	System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color="red" size="5">集合类最简单的遍历方式就是for-each方法，HashMap的遍历只是多了一层Entry对象进行操作</font>
+
+
+
+
+
+
+
+<p><font color="red"></font><br>&emsp;&emsp;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/线程安全的单例模式编写/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1811,435 +2247,6 @@
 <p><font color="red"></font><br>&emsp;&emsp;</p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/08/12/设计模式总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王浩南">
-      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="W先生和L小姐">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/设计模式总结/" itemprop="url">
-                  线程安全的单例模式编写
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-12 10:32:53" itemprop="dateCreated datePublished" datetime="2018-08-12T10:32:53+08:00">2018-08-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-27 22:47:36" itemprop="dateModified" datetime="2018-09-27T22:47:36+08:00">2018-09-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/12/设计模式总结/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/12/设计模式总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.1k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h1 id="利用静态内部类实现单例模式"><a href="#利用静态内部类实现单例模式" class="headerlink" title="利用静态内部类实现单例模式"></a>利用静态内部类实现单例模式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton t = <span class="keyword">new</span> Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> T.t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用双重校验锁DCL（double-checked-locking）"><a href="#使用双重校验锁DCL（double-checked-locking）" class="headerlink" title="使用双重校验锁DCL（double checked locking）"></a>使用双重校验锁DCL（double checked locking）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用synchronized关键字"><a href="#使用synchronized关键字" class="headerlink" title="使用synchronized关键字"></a>使用synchronized关键字</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		 <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">			s = <span class="keyword">new</span> Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a><font color="red">构造函数的特点</font></h1><p>1.<font color="red">构造函数必须和类名一样</font>（但和类名一样的不一定是构造方法，普通方法也可以和类名同名），并且 <strong><font color="red">不能有返回值，返回值也不能为void</font></strong>。</p>
-<p>2.构造函数总是伴随着new操作一起调用，并且不能由程序的编写者调用，只能由系统调用。</p>
-<p>3.构造函数不能被继承。</p>
-<p>4.子类可以通过super()来显示调用父类的构造函数。</p>
-<p><font color="red"></font><br>&emsp;&emsp;</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://vaneywhn.github.io/2018/07/15/各种数据结构中操作的平均时间复杂度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王浩南">
-      <meta itemprop="description" content="将孤独喂饱，把记忆埋好">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="W先生和L小姐">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/15/各种数据结构中操作的平均时间复杂度/" itemprop="url">
-                  各种数据结构中操作的平均时间复杂度
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-15 09:30:47" itemprop="dateCreated datePublished" datetime="2018-07-15T09:30:47+08:00">2018-07-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-05 09:09:34" itemprop="dateModified" datetime="2018-09-05T09:09:34+08:00">2018-09-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/15/各种数据结构中操作的平均时间复杂度/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/15/各种数据结构中操作的平均时间复杂度/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">3</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://uploadfiles.nowcoder.com/images/20180904/7903742_1536068666055_67A1C29518FD71CBB9C32DF8E2033DE7" alt="图片描述"></p>
-<p><img src="https://uploadfiles.nowcoder.com/images/20180411/2313460_1523452987239_072774B6B658B3603E1AA7198722775C" alt="图片描述"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/各种数据结构中操作的平均时间复杂度/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -2541,7 +2548,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2589,7 +2596,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -2671,7 +2680,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">21k</span>
   
 
   
@@ -2680,7 +2689,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
   
 </div>
 
