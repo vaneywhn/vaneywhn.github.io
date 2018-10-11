@@ -121,7 +121,7 @@
 <meta property="og:description" content="ArrayList、LinkedList、Vector的区别和实现原理。&amp;emsp;&amp;emsp;ArrayList和Vector只能按顺序存储元素（从下标为0的位置开始），删除元素的时候，需要移位并置空，默认初始容量都是10。ArrayList和Vector基于数组实现的，LinkedList基于双向循环链表实现的（含有头结点）。 一、线程安全性&amp;emsp;&amp;emsp; ArrayList和L">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://wiki.jikexueyuan.com/project/java-interview-bible/images/collection.jpg">
-<meta property="og:updated_time" content="2018-09-29T08:32:28.879Z">
+<meta property="og:updated_time" content="2018-10-11T03:49:44.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的集合类">
 <meta name="twitter:description" content="ArrayList、LinkedList、Vector的区别和实现原理。&amp;emsp;&amp;emsp;ArrayList和Vector只能按顺序存储元素（从下标为0的位置开始），删除元素的时候，需要移位并置空，默认初始容量都是10。ArrayList和Vector基于数组实现的，LinkedList基于双向循环链表实现的（含有头结点）。 一、线程安全性&amp;emsp;&amp;emsp; ArrayList和L">
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-29 16:32:28" itemprop="dateModified" datetime="2018-09-29T16:32:28+08:00">2018-09-29</time>
+                <time title="修改时间：2018-10-11 11:49:44" itemprop="dateModified" datetime="2018-10-11T11:49:44+08:00">2018-10-11</time>
               
             
           </span>
@@ -502,9 +502,9 @@
 <h3 id="Get-Object-Key-的实现"><a href="#Get-Object-Key-的实现" class="headerlink" title="Get(Object Key)的实现"></a>Get(Object Key)的实现</h3><p>&emsp;&emsp;get 操作的高效之处在于整个 get 过程不需要加锁，除非读到的值是空的才会加锁重读。之所以不会读到过期的值，是<strong>根据 java 内存模型的 happen before 原则，对volatile 字段的写入操作先于读操作，即使两个线程同时修改和获取volatile变量，get 操作也能拿到最新的值，这是用volatile 替换锁的经典应用场景</strong>。</p>
 <h3 id="Put-K-Key-V-Value-的实现——用Lock加锁"><a href="#Put-K-Key-V-Value-的实现——用Lock加锁" class="headerlink" title="Put(K Key,V Value)的实现——用Lock加锁"></a>Put(K Key,V Value)的实现——用Lock加锁</h3><p>①根据 key 计算出对应的 hash 值；<br><br>②根据 hash 值找到对应的Segment 对象；<br><br>③在这个 Segment 中执行具体的 put 操作；<br><br>插入操作需要经历两个步骤：<br><br>&emsp;&emsp;第一步判断是否需要对Segment 里的HashEntry 数组进行扩容；<br><br>&emsp;&emsp;第二步定位添加元素的位置然后放在HashEntry 数组里。<br></p>
 <h4 id="是否需要扩容？"><a href="#是否需要扩容？" class="headerlink" title="是否需要扩容？"></a>是否需要扩容？</h4><p>&emsp;&emsp;在插入元素前会先判断Segment 里的HashEntry 数组是否超过容量（threshold），如果超过阀值，数组进行扩容。值得一提的是， <strong>Segment的扩容判断比HashMap 更恰当，因为HashMap 是在插入元素后判断元素是否已经到达容量</strong>的，如果到达了就进行扩容，但是很有可能扩容之后没有新元素插入，这时HashMap 就进行了一次无效的扩容。</p>
-<p>###Move(Object Key)的实现<br>暂无总结</p>
+<h3 id="Move-Object-Key-的实现"><a href="#Move-Object-Key-的实现" class="headerlink" title="Move(Object Key)的实现"></a>Move(Object Key)的实现</h3><p>暂无总结</p>
 <p><strong>ConcurrentHashMap 的高并发性主要来自于三个方面：<br><br>1、用分离锁实现多个线程间的更深层次的共享访问。<br><br>2、用 HashEntry 对象的不变性来降低执行读操作的线程在遍历链表期间对加锁的需求。<br><br>3、通过对同一个 Volatile 变量的写 / 读访问，协调不同线程间读 / 写操作的内存可见性。</strong></p>
-<p>##WeakHashMap和HashMap的区别<br><br>WeakHashMap中的key采用的是“弱引用”的方式，只要WeakHashMap中的key不再被外部引用，所对应的键值对就可以被垃圾回收器回收。<br><br>HashMap中的key采用的是“强引用”的方式，当key不再被外部引用时，只有当这个key从HashMap中删除后，才可以被垃圾回收器回收。<br></p>
+<h2 id="WeakHashMap和HashMap的区别"><a href="#WeakHashMap和HashMap的区别" class="headerlink" title="WeakHashMap和HashMap的区别"></a>WeakHashMap和HashMap的区别<br></h2><p>WeakHashMap中的key采用的是“弱引用”的方式，只要WeakHashMap中的key不再被外部引用，所对应的键值对就可以被垃圾回收器回收。<br><br>HashMap中的key采用的是“强引用”的方式，当key不再被外部引用时，只有当这个key从HashMap中删除后，才可以被垃圾回收器回收。<br></p>
 <h2 id="HashMap和TreeMap区别："><a href="#HashMap和TreeMap区别：" class="headerlink" title="HashMap和TreeMap区别："></a>HashMap和TreeMap区别：</h2><p>1.实现方式的区别：<br> &emsp;HashMap：基于<strong>哈希表</strong>实现。TreeMap：基于<strong>红黑树</strong>实现。<br>2.TreeMap能够把它保存的记录根据键排序.<br>3.<strong>HashMap</strong>：适用于在Map中插入、删除和查找元素。<br> &emsp;<strong>Treemap</strong>：适用于按自然顺序或自定义顺序遍历键(key)。<br></p>
 <h1 id="Hashset的实现原理"><a href="#Hashset的实现原理" class="headerlink" title="Hashset的实现原理"></a>Hashset的实现原理</h1><p>对于HashSet而言，它是基于HashMap实现的，HashSet底层使用HashMap来保存所有元素。HashSet中的元素都存放在HashMap的key上面，而value中的值都是统一的一个 <strong>privatestaticfinalObjectPRESENT=newObject()</strong>;<br></p>
 <h1 id="Collection和Collections的区别"><a href="#Collection和Collections的区别" class="headerlink" title="Collection和Collections的区别"></a>Collection和Collections的区别</h1><p>Collection是<font color="red">集合类的上级接口</font>，子接口主要有Set和List。<br></p>
@@ -564,8 +564,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/JVM相关知识点汇总/" rel="next" title="JVM相关知识点汇总">
-                <i class="fa fa-chevron-left"></i> JVM相关知识点汇总
+              <a href="/2018/08/12/JAVA求解全排列/" rel="next" title="JAVA全排列问题">
+                <i class="fa fa-chevron-left"></i> JAVA全排列问题
               </a>
             
           </div>
@@ -574,7 +574,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/12/设计模式总结/" rel="prev" title="线程安全的单例模式编写">
+              <a href="/2018/08/12/线程安全的单例模式编写/" rel="prev" title="线程安全的单例模式编写">
                 线程安全的单例模式编写 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -655,7 +655,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -771,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList、LinkedList、Vector的区别和实现原理。"><span class="nav-number">1.</span> <span class="nav-text">ArrayList、LinkedList、Vector的区别和实现原理。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、线程安全性"><span class="nav-number">1.1.</span> <span class="nav-text">一、线程安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、扩容机制"><span class="nav-number">1.2.</span> <span class="nav-text">二、扩容机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、增删改查的效率"><span class="nav-number">1.3.</span> <span class="nav-text">三、增删改查的效率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"><span class="nav-number">2.</span> <span class="nav-text">HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和HashTable原理"><span class="nav-number">2.1.</span> <span class="nav-text">HashMap和HashTable原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和HashTable的区别"><span class="nav-number">2.2.</span> <span class="nav-text">HashMap和HashTable的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap-的原理"><span class="nav-number">2.3.</span> <span class="nav-text">ConcurrentHashMap 的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Object-Key-的实现"><span class="nav-number">2.3.1.</span> <span class="nav-text">Get(Object Key)的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Put-K-Key-V-Value-的实现——用Lock加锁"><span class="nav-number">2.3.2.</span> <span class="nav-text">Put(K Key,V Value)的实现——用Lock加锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是否需要扩容？"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">是否需要扩容？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和TreeMap区别："><span class="nav-number">2.4.</span> <span class="nav-text">HashMap和TreeMap区别：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hashset的实现原理"><span class="nav-number">3.</span> <span class="nav-text">Hashset的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collection和Collections的区别"><span class="nav-number">4.</span> <span class="nav-text">Collection和Collections的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#happen-before原则"><span class="nav-number">5.</span> <span class="nav-text">happen-before原则</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList、LinkedList、Vector的区别和实现原理。"><span class="nav-number">1.</span> <span class="nav-text">ArrayList、LinkedList、Vector的区别和实现原理。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、线程安全性"><span class="nav-number">1.1.</span> <span class="nav-text">一、线程安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、扩容机制"><span class="nav-number">1.2.</span> <span class="nav-text">二、扩容机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、增删改查的效率"><span class="nav-number">1.3.</span> <span class="nav-text">三、增删改查的效率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理"><span class="nav-number">2.</span> <span class="nav-text">HashMap、HashTable、LindedHashMap、ConcurrentHashMap、WeakHashMap的区别和实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和HashTable原理"><span class="nav-number">2.1.</span> <span class="nav-text">HashMap和HashTable原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和HashTable的区别"><span class="nav-number">2.2.</span> <span class="nav-text">HashMap和HashTable的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap-的原理"><span class="nav-number">2.3.</span> <span class="nav-text">ConcurrentHashMap 的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Object-Key-的实现"><span class="nav-number">2.3.1.</span> <span class="nav-text">Get(Object Key)的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Put-K-Key-V-Value-的实现——用Lock加锁"><span class="nav-number">2.3.2.</span> <span class="nav-text">Put(K Key,V Value)的实现——用Lock加锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是否需要扩容？"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">是否需要扩容？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Move-Object-Key-的实现"><span class="nav-number">2.3.3.</span> <span class="nav-text">Move(Object Key)的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WeakHashMap和HashMap的区别"><span class="nav-number">2.4.</span> <span class="nav-text">WeakHashMap和HashMap的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap和TreeMap区别："><span class="nav-number">2.5.</span> <span class="nav-text">HashMap和TreeMap区别：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hashset的实现原理"><span class="nav-number">3.</span> <span class="nav-text">Hashset的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collection和Collections的区别"><span class="nav-number">4.</span> <span class="nav-text">Collection和Collections的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#happen-before原则"><span class="nav-number">5.</span> <span class="nav-text">happen-before原则</span></a></li></ol></div>
             
 
           </div>
@@ -803,7 +803,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">20k</span>
   
 
   
@@ -812,7 +812,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   
 </div>
 

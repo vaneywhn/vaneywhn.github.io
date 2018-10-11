@@ -112,18 +112,18 @@
 
 
 
-  <meta name="description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private void Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singlet">
+  <meta name="description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singleton ge">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全的单例模式编写">
 <meta property="og:url" content="https://vaneywhn.github.io/2018/08/12/线程安全的单例模式编写/index.html">
 <meta property="og:site_name" content="W先生和L小姐">
-<meta property="og:description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private void Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singlet">
+<meta property="og:description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singleton ge">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-27T14:47:30.807Z">
+<meta property="og:updated_time" content="2018-09-27T14:47:36.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程安全的单例模式编写">
-<meta name="twitter:description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private void Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singlet">
+<meta name="twitter:description" content="利用静态内部类实现单例模式1234567891011public class Singleton &amp;#123;		private Singleton()&amp;#123;	&amp;#125;	private static class T&amp;#123;		private static Singleton t = new Singleton();	&amp;#125;	public static Singleton ge">
 
 
 
@@ -387,7 +387,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-27 22:47:30" itemprop="dateModified" datetime="2018-09-27T22:47:30+08:00">2018-09-27</time>
+                <time title="修改时间：2018-09-27 22:47:36" itemprop="dateModified" datetime="2018-09-27T22:47:36+08:00">2018-09-27</time>
               
             
           </span>
@@ -450,7 +450,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">945</span>
+                <span title="本文字数">1.1k</span>
               
 
               
@@ -485,9 +485,13 @@
 
       
         <a id="more"></a>
-<h1 id="利用静态内部类实现单例模式"><a href="#利用静态内部类实现单例模式" class="headerlink" title="利用静态内部类实现单例模式"></a>利用静态内部类实现单例模式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton t = <span class="keyword">new</span> Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> T.t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用双重校验锁DCL（double-checked-locking）"><a href="#使用双重校验锁DCL（double-checked-locking）" class="headerlink" title="使用双重校验锁DCL（double checked locking）"></a>使用双重校验锁DCL（double checked locking）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用synchronized关键字"><a href="#使用synchronized关键字" class="headerlink" title="使用synchronized关键字"></a>使用synchronized关键字</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		 <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">			s = <span class="keyword">new</span> Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="利用静态内部类实现单例模式"><a href="#利用静态内部类实现单例模式" class="headerlink" title="利用静态内部类实现单例模式"></a>利用静态内部类实现单例模式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton t = <span class="keyword">new</span> Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> T.t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用双重校验锁DCL（double-checked-locking）"><a href="#使用双重校验锁DCL（double-checked-locking）" class="headerlink" title="使用双重校验锁DCL（double checked locking）"></a>使用双重校验锁DCL（double checked locking）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用synchronized关键字"><a href="#使用synchronized关键字" class="headerlink" title="使用synchronized关键字"></a>使用synchronized关键字</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		 <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">			s = <span class="keyword">new</span> Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a><font color="red">构造函数的特点</font></h1><p>1.<font color="red">构造函数必须和类名一样</font>（但和类名一样的不一定是构造方法，普通方法也可以和类名同名），并且 <strong><font color="red">不能有返回值，返回值也不能为void</font></strong>。</p>
+<p>2.构造函数总是伴随着new操作一起调用，并且不能由程序的编写者调用，只能由系统调用。</p>
+<p>3.构造函数不能被继承。</p>
+<p>4.子类可以通过super()来显示调用父类的构造函数。</p>
 <p><font color="red"></font><br>&emsp;&emsp;</p>
 
       
@@ -542,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/15/八大排序算法总结&时间复杂度&稳定性/" rel="next" title="八大排序算法总结&时间复杂度&稳定性">
-                <i class="fa fa-chevron-left"></i> 八大排序算法总结&时间复杂度&稳定性
+              <a href="/2018/08/12/Java中的集合类/" rel="next" title="Java中的集合类">
+                <i class="fa fa-chevron-left"></i> Java中的集合类
               </a>
             
           </div>
@@ -552,8 +556,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/12/各类数据结构遍历/" rel="prev" title="各类数据结构遍历">
-                各类数据结构遍历 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/12/JVM相关知识点汇总/" rel="prev" title="JVM相关知识点汇总">
+                JVM相关知识点汇总 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -633,7 +637,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -749,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用静态内部类实现单例模式"><span class="nav-number">1.</span> <span class="nav-text">利用静态内部类实现单例模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用双重校验锁DCL（double-checked-locking）"><span class="nav-number">2.</span> <span class="nav-text">使用双重校验锁DCL（double checked locking）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用synchronized关键字"><span class="nav-number">3.</span> <span class="nav-text">使用synchronized关键字</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用静态内部类实现单例模式"><span class="nav-number">1.</span> <span class="nav-text">利用静态内部类实现单例模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用双重校验锁DCL（double-checked-locking）"><span class="nav-number">2.</span> <span class="nav-text">使用双重校验锁DCL（double checked locking）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用synchronized关键字"><span class="nav-number">3.</span> <span class="nav-text">使用synchronized关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数的特点"><span class="nav-number">4.</span> <span class="nav-text">构造函数的特点</span></a></li></ol></div>
             
 
           </div>
@@ -781,7 +785,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">20k</span>
   
 
   
@@ -790,7 +794,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   
 </div>
 
